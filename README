@@ -1,0 +1,33 @@
+PHPMobile4Izzy is a integration os PHPMobile/IsMobile with Izzy Framework
+
+PHPMobile is created by @pokaria, more about this visit < www.phpmobile.com.br >
+
+Using:
+
+1. Copy folder PHPMobile4Izzy for APP/utils/
+2. Enter this code into Controller( I'm using in Security->restoreSessionUser )
+/**
+  *	INTEGRAÇÃO PHPMOBILE
+  *	CHECA SE O ACESSO É VIA DISPOSITIVO MOBILE
+  *	FAZ LOG SEMPRE DO IP MAIS, SE FOR GUARDA O USER AGENT E O DEVICE, SE NÃO FOR, GUARDA SOMENTE O USER AGENT. 
+  */
+        $isMobile = new Izzy::$utils->PHPMobile4Izzy->IsMobile();
+        
+        if( $isMobile->CheckMobile() )
+	{
+		Logging::log( 'mobile', "\nIp:" . $_SERVER['REMOTE_ADDR'] . "\nUser Agent: " . $isMobile->GetUserAgent() . "\nMobile Device: " . $isMobile->GetMobileDevice() . "\n-----------\n" );
+	}
+	else
+	{
+		Logging::log( 'UserAgents', "\nIp:" . $_SERVER['REMOTE_ADDR'] . "\nUser Agent: " . $isMobile->GetUserAgent() . "\n-----------\n" );
+	}
+/**
+  *	FIM - INTEGRAÇÃO PHPMOBILE 
+  */
+
+-------------------
+
+Save data about Mobile Device in Log, DB or other local. I'm save in log.
+
+Thank's
+
